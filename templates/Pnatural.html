@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'css/stylesNatural.css' %}">
+</head>
+
+<body>
+    <header class="hv-background">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img id="logoTec" src="{% static 'Imagenes/20230309_161828.png' %}" alt="Logo" width="200"
+                        height="60" class="">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav  g-col-6">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-secondary" aria-current="page"
+                                href="{% url 'index' %}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-secondary" href="{% url 'servicios' %}">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-secondary" href="{% url 'contacto' %}">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <form method="POST" action="{% url 'store_cliente' %}">
+        {% csrf_token %}
+        <section class="container-login">
+            <div class="img"></div>
+            <div class="container">
+                <h1><b>Persona Natural</b></h1>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Nombre" required name="nombre">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Apellido" required name="apellido">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input type="tel" class="form-control" placeholder="Numero de Contacto" required name="numero">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Dirección" required name="direccion">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input type="date" id="fecha" class="form-control" placeholder="Fecha" required
+                            name="fecha">
+                    </div>
+                    <div class="col">
+                        <input type="time" id="hora" class="form-control" placeholder="Hora" required
+                            name="hora">
+                    </div>
+                    <div class="col">
+                        <input type="email" class="form-control" placeholder="Correo" required name="email">
+                    </div>
+                </div>
+                <div>
+                    <input class="btn btn-third" type="submit" value="Registrar">
+                </div>
+            </div>
+        </section>
+    </form>
+    <footer class="footer footer-login">
+        <div class="justify-content-center">
+            <div class="col-auto">
+                <p>© 2021. By Tatiana, Jhonatan, Mateo, Santiago</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const fechaInput = document.getElementById('fecha');
+        const horaInput = document.getElementById('hora');
+    
+        fechaInput.addEventListener('change', function () {
+        const fechaSeleccionada = new Date(this.value);
+        const hoy = new Date();
+
+        // Verificar si la fecha seleccionada es válida
+        if (isNaN(fechaSeleccionada.getTime())) {
+            alert('Por favor, ingrese una fecha válida.');
+            this.value = ''; // Limpiar el valor si no es una fecha válida
+            return;
+        }
+
+        // Verificar si la fecha seleccionada es anterior a la fecha actual
+        if (fechaSeleccionada < hoy) {
+            alert('Por favor, seleccione una fecha futura.');
+            this.value = ''; // Limpiar el valor si es una fecha pasada
+            return;
+        }
+
+        // Verificar si el día seleccionado está entre lunes (1) y viernes (5)
+        const diaSemana = fechaSeleccionada.getDay();
+        if (diaSemana < 1 || diaSemana > 5) {
+            alert('Por favor, seleccione un día de lunes a viernes.');
+            this.value = ''; // Limpiar el valor si no es un día laborable
+            return;
+        }
+        });
+    
+        horaInput.addEventListener('change', function () {
+        const horaSeleccionada = this.value;
+
+        // Verificar si la hora seleccionada está dentro del rango permitido (de 7:00 AM a 7:00 PM)
+        const horaInicio = '07:00'; // Hora de inicio permitida
+        const horaFin = '19:00'; // Hora de finalización permitida
+
+        if (horaSeleccionada < horaInicio || horaSeleccionada > horaFin) {
+            alert('Por favor, elija una hora entre las 7:00 AM y las 7:00 PM.');
+            this.value = ''; // Limpiar el valor si está fuera del rango
+        }
+    });
+    </script>
+</body>
+
+</html>
