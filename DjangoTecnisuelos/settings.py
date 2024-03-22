@@ -143,10 +143,10 @@ MIDDLEWARE = [
 
 
 # Media files
-MEDIA_URL = 'media/'
-MEDIAFILES_DIRS = (
-    os.path.join(BASE_DIR,'media'),
-)
+#MEDIA_URL = 'media/'
+#MEDIAFILES_DIRS = (
+#    os.path.join(BASE_DIR,'media'),
+#)
 
 ROOT_URLCONF = 'DjangoTecnisuelos.urls'
 
@@ -176,8 +176,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tecnidjango',
         'USER': 'root',
-        'PASSWORD': '1234root',
-        'HOST': 'tecnisuelos.cxio4c6myvat.us-east-2.rds.amazonaws.com',
+        'PASSWORD': 'root1234',
+        'HOST': 'backendtecnisuelos.cvoa6uew2ayd.us-east-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -238,9 +238,14 @@ SERVER_ERROR = 'DjangoTecnisuelos.views.error500'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+MEDIA_URLS ='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# STATIC_URL = 'static/'
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
 
 LOGOUT_REDIRECT_URL = '/logout/'
 
@@ -249,3 +254,12 @@ LOGOUT_REDIRECT_URL = '/logout/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# AWS_ACCESS_KEY_ID = 'AKIAXYKJRURRAKNNARZX'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'tecnisuelos'
+# AWS_S3_SIGNATURE_NAME = 's3v4',
+# AWS_S3_REGION_NAME = 'us-east-1'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL =  None
+# AWS_S3_VERIFY = True
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
