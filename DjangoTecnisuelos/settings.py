@@ -145,10 +145,10 @@ MIDDLEWARE = [
 
 
 # Media files
-#MEDIA_URL = 'media/'
-#MEDIAFILES_DIRS = (
-#    os.path.join(BASE_DIR,'media'),
-#)
+MEDIA_URL = 'media/'
+MEDIAFILES_DIRS = (
+   os.path.join(BASE_DIR,'media'),
+)
 
 ROOT_URLCONF = 'DjangoTecnisuelos.urls'
 
@@ -244,10 +244,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 MEDIA_URLS ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# STATIC_URL = 'static/'
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'static'),
-# )
+STATIC_URL = 'static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 LOGOUT_REDIRECT_URL = '/logout/'
 
